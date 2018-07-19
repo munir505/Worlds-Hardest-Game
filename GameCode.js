@@ -5,8 +5,6 @@ var context = canvas.getContext("2d");
 var menu = new Audio('menu.mp3');
 menu.play();
 
-//-------------------------------------------------------------------------------------------------------------------------
-
 //starts the function startPage
 startPage();
 
@@ -38,8 +36,6 @@ function startPage(e) {
     context.fillText("if not have fun!!", 380, 415);
 }
 
-//-------------------------------------------------------------------------------------------------------------------------
-
 //this is a function where you need to press space bar to start the actual game
 var space = 32;
 
@@ -59,15 +55,10 @@ document.onkeydown = function (event) {
     }
 }
 
-//-------------------------------------------------------------------------------------------------------------------------
-
-
 //making two variables to use during and after game
 var score = 0;
 
 var deathCount = 0;
-
-//-------------------------------------------------------------------------------------------------------------------------
 
 //making a function that makes the player object
 function Player(xPos, yPos, width, height, speed) {
@@ -104,12 +95,8 @@ function Player(xPos, yPos, width, height, speed) {
     }
 }
 
-//------------------------------------------------------------------------------
-
 //making a variable that creates the player with the given attributes
 var player = new Player(1, canvas.height / 2, 25, 25, 5);
-
-//------------------------------------------------------------------------------
 
 //array that holds the keycodes of the arrow keys
 var keys = [];
@@ -133,8 +120,6 @@ document.body.onkeydown = function (e) {
     var kc = e.keyCode || e.which;
     keys[kc] = e.type == 'keydown';
 }
-
-//------------------------------------------------------------------------------
 
 //function that moves the player along the x and y axis
 var movePlayer = function (dx, dy) {
@@ -161,9 +146,6 @@ var playerMove = function () {
         movePlayer(0, 1);
     }
 }
-
-//-------------------------------------------------------------------------------------------------------------------------
-
 
 //this creates the enemy objects
 function Object(xO, yO, width, height) {
@@ -198,8 +180,6 @@ function Object(xO, yO, width, height) {
         }
     }
 }
-
-//------------------------------------------------------------------------------
 
 //this function clears the canvas and is used later in the code
 function clear() {
@@ -237,8 +217,6 @@ function safeZone() {
     context.fillRect(canvas.width - 80, 0, 80, canvas.height);
 }
 
-//------------------------------------------------------------------------------
-
 //update function clears and redraws the player and deathcount and safezones
 function update() {
 
@@ -249,8 +227,6 @@ function update() {
     levelInd();
 
 }
-
-//--------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //level 1 starts here 
 //bellow is a interval function main loop of the game
@@ -263,8 +239,6 @@ function level1() {
         playerMove();
 
     }, 1000 / 60);
-
-    //------------------------------------------------------------------------------
 
     //this draws the enemy objects in the first level
     function drawObject() {
@@ -281,8 +255,6 @@ function level1() {
         object10.draw();
     }
 
-    //------------------------------------------------------------------------------
-
     //giving the variables attributes to make the enemy objects
     var object = new Object(150, 200, 25, 25);
     var object2 = new Object(250, 200, 25, 25);
@@ -294,8 +266,6 @@ function level1() {
     var object8 = new Object(750, canvas.height / 2, 25, 25);
     var object9 = new Object(750, 10, 25, 25);
     var object10 = new Object(750, canvas.height - 35, 25, 25);
-
-    //------------------------------------------------------------------------------
 
     //direction is used as a flag variable for the direction of the objects
     var direction = 7;
@@ -332,7 +302,6 @@ function level1() {
         if (object8.xO >= canvas.width - 150) {
             direction2 = 7;
             object8.xO -= direction2;
-
         }
 
         //does function update and drawobject so that player as well all other objects are drawn
@@ -356,8 +325,6 @@ function level1() {
 
 }
 
-//--------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 //screen that shows that next level is about to start
 //as well as some comments and stuff
 function nextLvl() {
@@ -377,8 +344,6 @@ function nextLvl() {
 
 }
 
-//------------------------------------------------------------------------------
-
 //level 2 starts and has interval function again since it was stopped
 //so that you could move to the next level
 function level2() {
@@ -391,9 +356,7 @@ function level2() {
         playerMove();
 
     }, 1000 / 60);
-
-    //------------------------------------------------------------------------------
-
+	
     //creates the objects for level 2
     var obj = new Object(180, 200, 25, 25);
     var obj2 = new Object(680, 200, 25, 25);
@@ -410,8 +373,6 @@ function level2() {
     var obj7 = new Object(630, canvas.height - 170, 10, 170);
     var obj8 = new Object(630 - 400, 170, 410, 10);
     var obj9 = new Object(630 - 400, canvas.height - 170, 400, 10);
-
-    //------------------------------------------------------------------------------
 
     //draws the objects for level 2
     function drawObj() {
@@ -432,8 +393,6 @@ function level2() {
         obj8.draw();
         obj9.draw();
     }
-
-    //------------------------------------------------------------------------------
 
     //flag variable for level 2 objects
     var dir = 8;
@@ -479,8 +438,6 @@ function level2() {
 
 }
 
-//------------------------------------------------------------------------------
-
 //another page that tell the player where they are at
 //and some comments
 function nextLvl2() {
@@ -499,8 +456,6 @@ function nextLvl2() {
 
 }
 
-//------------------------------------------------------------------------------
-
 //starts level 3 same as level 2
 function level3() {
 
@@ -512,8 +467,6 @@ function level3() {
         playerMove();
 
     }, 1000 / 60);
-
-    //------------------------------------------------------------------------------
 
     //creating objects for level 3
     var final = new Object(170, 200, 25, 25);
@@ -537,9 +490,7 @@ function level3() {
 
     var final6 = new Object(700, 0, 10, 185);
     var final7 = new Object(700, canvas.height - 170, 10, 170);
-
-    //------------------------------------------------------------------------------
-
+	
     //draws objects for level 3
     function drawFinal() {
         final.draw();
@@ -560,13 +511,9 @@ function level3() {
 
     }
 
-    //------------------------------------------------------------------------------
-
     //flag varibale for the objects of level 3
     var dir2 = 8;
     var dir3 = 8;
-
-    //------------------------------------------------------------------------------
 
     //moves the objects in level 3
     function moveFinal() {
@@ -600,8 +547,6 @@ function level3() {
             final13.xO -= dir3;
         }
 
-
-
         update();
         drawFinal();
         //ends the level once reached the end
@@ -614,12 +559,8 @@ function level3() {
             clear();
             gameFinish();
         }
-
     }
-
 }
-
-//------------------------------------------------------------------------------
 
 //page that is displayed once the game ends
 function gameFinish() {
@@ -648,9 +589,6 @@ function gameFinish() {
     context.fillStyle = 'blue';
     context.fillText("Refresh Page", 390, 400);
     scoreRank();
-
 }
-
-//THE END!!
 
 
